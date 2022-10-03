@@ -19,6 +19,8 @@ namespace UnityEngine.XR.ARFoundation.Samples
         [Tooltip("Instantiates this prefab on a plane at the touch location.")]
         GameObject m_PlacedPrefab;
 
+        private Quaternion fixQuat = Quaternion.Euler(90, 0, 0);
+
         /// <summary>
         /// The prefab to instantiate on touch.
         /// </summary>
@@ -36,6 +38,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
         void Awake()
         {
             m_RaycastManager = GetComponent<ARRaycastManager>();
+            m_PlacedPrefab.SetActive(false);
         }
 
         bool TryGetTouchPosition(out Vector2 touchPosition)
@@ -53,22 +56,31 @@ namespace UnityEngine.XR.ARFoundation.Samples
         void Update()
         {
             if (!TryGetTouchPosition(out Vector2 touchPosition))
+            {
                 return;
+            }
 
             if (m_RaycastManager.Raycast(touchPosition, s_Hits, TrackableType.PlaneWithinPolygon))
             {
                 // Raycast hits are sorted by distance, so the first one
                 // will be the closest hit.
                 var hitPose = s_Hits[0].pose;
+                //if (m_PlacedPrefab.activeSelf == false)
+                //{
+                //    m_PlacedPrefab.transform.localRotation = hitPose.rotation;
+                //}
+                m_PlacedPrefab.SetActive(true);
+                m_PlacedPrefab.transform.position = hitPose.position;
 
-                if (spawnedObject == null)
-                {
-                    spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, hitPose.rotation);
-                }
-                else
-                {
-                    spawnedObject.transform.position = hitPose.position;
-                }
+                //if (spawnedObject == null)
+                //{
+                //    spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, hitPose.rotation);
+                //}
+                //else
+                //{
+                //    spawnedObject.transform.position = hitPose.position;
+                //}
+
             }
         }
 
