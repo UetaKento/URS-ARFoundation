@@ -155,6 +155,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Kenty/Scenes/Detect Vertical ARFoundation.unity
     guid: 1ce4866d5fbb6ad42b5cbd3475f427b5
+  - enabled: 1
+    path: Assets/Kenty/Scenes/UnityChan ARFoundation.unity
+    guid: 21e513207c7d7ee489608a4ad8366cd1
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: f8ce26fe3bc69499b9be4b2378e97a94,
       type: 2}

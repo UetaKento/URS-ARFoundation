@@ -106,6 +106,7 @@ namespace Unity.RenderStreaming.Samples
         [SerializeField] private Button buttonAR;
         [SerializeField] private Button buttonMultiplay;
         [SerializeField] private Button buttonVerticalAR;
+        [SerializeField] private Button buttonUnityChanAR;
 
         void Start()
         {
@@ -130,6 +131,7 @@ namespace Unity.RenderStreaming.Samples
             buttonAR.onClick.AddListener(OnPressedAR);
             buttonMultiplay.onClick.AddListener(OnPressedMultiplay);
             buttonVerticalAR.onClick.AddListener(OnPressedVerticalAR);
+            buttonUnityChanAR.onClick.AddListener(OnPressedUnityChanAR);
 
 #if UNITY_EDITOR
             buttonGyro.interactable = false;
@@ -242,6 +244,10 @@ namespace Unity.RenderStreaming.Samples
         private void OnPressedVerticalAR()
         {
             SceneManager.LoadScene("Detect Vertical ARFoundation", LoadSceneMode.Single);
+        }
+        private void OnPressedUnityChanAR()
+        {
+            SceneManager.LoadScene("UnityChan ARFoundation", LoadSceneMode.Single);
         }
     }
 }
